@@ -4,9 +4,24 @@
  * Module dependencies.
  */
 
+
+var mongoClient=require('mongodb').MongoCliente;
+var mongoUri = 'mongodb://localhost:27017';
+var mongoDBName= 'exmen';
+var mongoOptions= {useNewUrlParse:true}; 
+
+mongoClient.connect(mongoUri, mongiOprions, (err,conn)=>{
+  if(err){
+    console.log(err);
+    process.exit(1);
+
+  }
+  var db = conn.db(mongoDBName)
+
 var app = require('../app');
 var debug = require('debug')('incidentes:server');
 var http = require('http');
+
 
 /**
  * Get port from environment and store in Express.
@@ -88,3 +103,5 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+});
